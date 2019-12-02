@@ -1,3 +1,5 @@
+import { trampoline, identity } from '../utils';
+
 // sumRange with no optimisations
 const sumRange = n => {
   if (n <= 1) return n;
@@ -29,7 +31,6 @@ const sumRangePTCFacade = (() => {
 })();
 
 // sumRange with continuous passing style
-const identity = x => x;
 const sumRangeCPS = (n, cont = identity) => {
   if (n <= 1) return cont(n);
 
@@ -38,14 +39,6 @@ const sumRangeCPS = (n, cont = identity) => {
 };
 
 // sumRange with trampolining
-const trampoline = fn => (...args) => {
-  let result = fn(...args);
-  while (typeof result === 'function') {
-    result = result();
-  }
-  return result;
-};
-
 const sumRangeTrampoline = trampoline(function _sumRange(n, totalSoFar = 0) {
   const newTotalSoFar = n + totalSoFar;
 

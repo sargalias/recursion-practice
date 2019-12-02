@@ -1,3 +1,5 @@
+import { trampoline, identity } from '../utils';
+
 // Power
 const power = (base, exponent) => {
   if (exponent === 0) {
@@ -16,7 +18,6 @@ const powerPTC = (base, exponent, resultSoFar = 1) => {
 };
 
 // Power continuous passing style
-const identity = x => x;
 const powerCPS = (base, exponent, cont = identity) => {
   if (exponent === 0) {
     return cont(1);
@@ -25,16 +26,6 @@ const powerCPS = (base, exponent, cont = identity) => {
 };
 
 // Power with trampolining
-const trampoline = fn => (...args) => {
-  let result = fn(...args);
-
-  while (typeof result === 'function') {
-    result = result();
-  }
-
-  return result;
-};
-
 const powerTrampoline = trampoline(function _power(
   base,
   exponent,
