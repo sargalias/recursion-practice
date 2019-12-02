@@ -2,6 +2,14 @@
 
 Just some small recursion practice I've done.
 
+In some of the examples I included multiple solutions, such as:
+
+- Iterative
+- Recursive
+- Proper tail calls
+- Continuous passing style
+- Trampolining
+
 ## Getting started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
